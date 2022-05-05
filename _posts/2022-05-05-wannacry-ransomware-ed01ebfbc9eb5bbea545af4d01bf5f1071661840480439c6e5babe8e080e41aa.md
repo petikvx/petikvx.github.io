@@ -5,5 +5,8 @@
 * [Bazaar](https://bazaar.abuse.ch/sample/ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa/)
 * [VirusTotal](https://www.virustotal.com/gui/file/ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa)
 
+<img src="../media/wanna-cry-01.png"> </img>
+<img src="../media/wanna-cry-02.png"> </img>
+
 ![wanna-cry-01](../media/wanna-cry-01.png)
 ![wanna-cry-02](../media/wanna-cry-02.png)
