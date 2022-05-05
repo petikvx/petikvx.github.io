@@ -7,6 +7,3 @@
 
 <img src="../media/wanna-cry-01.png"> </img>
 <img src="../media/wanna-cry-02.png"> </img>
-
-![wanna-cry-01](../media/wanna-cry-01.png)
-![wanna-cry-02](../media/wanna-cry-02.png)
