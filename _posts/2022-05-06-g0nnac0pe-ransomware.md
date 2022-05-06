@@ -1,4 +1,4 @@
-# G0nnaC0pe Ransomware NOT UPLOAD
+# G0nnaC0pe Ransomware UPTOSTREAM
 
 <iframe width="640" height="360" src="https://uptostream.com/iframe/pkqk8d0c33g3" scrolling="no" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
 
