@@ -1,5 +1,7 @@
 # G0nnaC0pe Ransomware NOT UPLOAD
 
+<iframe width="640" height="360" src="https://uptostream.com/iframe/pkqk8d0c33g3" scrolling="no" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
+
 <iframe width="848" height="480" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 * https://bazaar.abuse.ch/sample/1de22192c8810ffd1200bdb143bf854c9a9546002cd55803c9969df8e9d00d3b/
