@@ -1,4 +1,4 @@
-# Thanos Parker Ransomware
+# Thanos Parker Ransomware NOT UPLOAD
 
 <iframe width="848" height="480" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
