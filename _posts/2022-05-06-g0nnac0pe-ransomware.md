@@ -1,6 +1,6 @@
 # G0nnaC0pe Ransomware
 
-<iframe width="848" height="480" src="https://uptostream.com/iframe/pkqk8d0c33g3" scrolling="no" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
+<iframe width="848" height="480" src="https://www.youtube.com/embed/nvEki3aq5Pg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 * https://bazaar.abuse.ch/sample/1de22192c8810ffd1200bdb143bf854c9a9546002cd55803c9969df8e9d00d3b/
 * https://www.virustotal.com/gui/file/1de22192c8810ffd1200bdb143bf854c9a9546002cd55803c9969df8e9d00d3b
