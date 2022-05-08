@@ -1,11 +1,6 @@
 # Conti Ransomware
 
-## Windows Version
-<iframe width="848" height="480" src="https://uptostream.com/iframe/7j4opfvoxuiq" scrolling="no" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
-
-## Linux Version
-<iframe width="848" height="480" src="https://uptostream.com/iframe/ym2ipqv4suzq" scrolling="no" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
-
+<iframe width="848" height="480" src="https://www.youtube.com/embed/o8X18ZhmSyc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Windows Version
 * https://bazaar.abuse.ch/sample/7f6dbd9fa0cb7ba2487464c824b6d7e16ace9d4cd15e4452df4c9a9fd6bd1907/
