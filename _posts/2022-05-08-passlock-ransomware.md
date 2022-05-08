@@ -6,6 +6,8 @@
 <img src="/images/passlock02.png"></src>
 <img src="/images/passlock03.png"></src>
 <img src="/images/passlock04.png"></src>
+<img src="/images/passlock05.png"></src>
+<img src="/images/passlock06.png"></src>
 
 
 * https://bazaar.abuse.ch/sample/a0b4611fde48b7a3ae05cc87251f47f34f3b837bc0402f86ec05cfc1edadc13f/
