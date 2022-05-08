@@ -1,4 +1,4 @@
-# Ragnar Locker Ransomware
+# Quantum Ransomware
 
 <iframe width="848" height="480" src="https://uptostream.com/iframe/m6f492xsi0of" scrolling="no" frameborder="0" allowfullscreen webkitallowfullscreen></iframe>
 
