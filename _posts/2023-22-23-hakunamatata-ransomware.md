@@ -1,6 +1,8 @@
 # Hakuna Matata Ransomware
 
 * https://app.any.run/tasks/9ee8abe7-4ac8-4a10-8102-ec9e71222fa3
+* https://www.virustotal.com/gui/file/faf7d4c9470f32180e2e57a98149488ef8652077735b907fedb468010315aa1e/details
+* https://mwdb.cert.pl/file/faf7d4c9470f32180e2e57a98149488ef8652077735b907fedb468010315aa1e
 
 ## Technical informations
 
