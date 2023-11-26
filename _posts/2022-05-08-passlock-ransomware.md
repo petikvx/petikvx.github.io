@@ -15,7 +15,9 @@
 ![image04](/images/passlock04.png)
 ![image05](/images/passlock05.png)
 ![image06](/images/passlock06.png)
-![video]("https://www.youtube.com/embed/muSq5-U93BE?si=VIRPA3mc86FWRxzt")
+
+[![Texte alternatif de la vidéo](https://img.youtube.com/vi/VIRPA3mc86FWRxzt/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIRPA3mc86FWRxzt)
+
 
 
 * https://bazaar.abuse.ch/sample/a0b4611fde48b7a3ae05cc87251f47f34f3b837bc0402f86ec05cfc1edadc13f/
