@@ -4,7 +4,6 @@
 
 ![Logo OpenAI](/images/vbs-monopoly.jpg)
 
-
 ## Source Code
 
 ```
