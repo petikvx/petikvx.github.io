@@ -170,3 +170,4 @@ In this script, the names of files and character strings have been decoded for b
 
 * https://bazaar.abuse.ch/sample/5cd3c387b9324e048ba925640a464ad330feca96eeb90eb0e568421c2b9eb7e7/
 * https://www.virustotal.com/gui/file/5cd3c387b9324e048ba925640a464ad330feca96eeb90eb0e568421c2b9eb7e7
+* https://mwdb.cert.pl/file/8a2b52c6c2cc833f3838bfa739d018dd69327941d68b6fed89fedde67ab2b973
