@@ -39,15 +39,17 @@ End Function
 
 **Error Handling Disabling:**
 
-vbscriptCopy code
-
-`On Error Resume Next` 
+```
+On Error Resume Next
+```
 
 This line deactivates error handling, meaning if an error occurs in the script, it will continue to run uninterrupted.
 
 **Creation of a File System Object:**
 
-`Set A1 = CreateObject(...)` 
+```
+Set A1 = CreateObject(...)
+```
 
 This part creates an object that allows manipulation of files and folders.
 
