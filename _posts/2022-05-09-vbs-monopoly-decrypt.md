@@ -2,6 +2,9 @@
 
 <iframe width="848" height="480" src="https://www.youtube.com/embed/gmJlR4sCP3c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+![Logo OpenAI](/images/vbs-monopoly.jpg)
+
+
 ## Source Code
 
 ```
