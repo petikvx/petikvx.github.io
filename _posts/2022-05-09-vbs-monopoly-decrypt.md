@@ -92,7 +92,8 @@ The script executes the files it previously created.
 
 **B Decoding Function:**
 
-```Function B(B1) ...
+```
+Function B(B1) ...
 End Function
 ```
 
