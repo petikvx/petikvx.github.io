@@ -7611,8 +7611,8 @@ LABEL_17:
 }
 // 40A6B0: using guessed type WCHAR var_6C[34];
 
-//----- (0040A8B0) --------------------------------------------------------
-char __fastcall sub_40A8B0(const WCHAR *pObjectName, const void *a2)
+//----- (0040A8B0 - ENCRYPT FILE) --------------------------------------------------------
+char __fastcall sub_40A8B0(const WCHAR *pObjectName, const void *a2)  
 {
   WCHAR *v2; // ebx
   int v3; // edi

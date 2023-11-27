@@ -403,3 +403,113 @@ void sub_4096B0()
   }
 }
 ```
+1.  **Acquisition and Preparation of Drawing Context (Device Context):**
+    
+    -   Obtains the drawing context (DC) for the screen (`GetDC`) and creates a compatible drawing context (`CreateCompatibleDC`).
+    -   Determines the screen dimensions and creates a font (`CreateFontW`) and a compatible bitmap (`CreateCompatibleBitmap`).
+2.  **Preparing the Text:**
+    
+    -   Formats a string, likely a ransom message, indicating that the user's files have been encrypted.
+    -   Calculates the text size and prepares a rectangle (`rc`) for drawing the text.
+3.  **Drawing the Text:**
+    
+    -   Sets up text properties (color, background) and draws the formatted text onto the compatible bitmap using `DrawTextW`.
+4.  **Creating a Bitmap Image:**
+    
+    -   Prepares a bitmap file header and copies the image of the drawn text into a buffer using `GetDIBits`.
+5.  **Saving the Image and Changing the Wallpaper:**
+    
+    -   Retrieves the path to the "My Documents" folder and creates a bitmap file (`CreateFileW`).
+    -   Writes the bitmap image to the file and closes the file (`WriteFile`, `CloseHandle`).
+    -   Modifies the registry key to change the user's wallpaper, likely to display the ransom message.
+    -   Uses `SystemParametersInfoW` to refresh the wallpaper.
+6.  **Cleanup and Resource Release:**
+    
+    -   Releases graphical resources (font, bitmap, drawing context) and frees allocated memory.
+
+This function generates a ransom message as an image, saves it on the user's system, and modifies the wallpaper to display this message. 
+
+![wallpaper](/images/lambda-wallpaper.jpeg)
+
+### Change icon for .Lambda file
+
+```
+void sub_409A50()
+{
+  HRSRC ResourceW; // esi
+  DWORD v1; // edi
+  HGLOBAL Resource; // eax
+  const void *v3; // ebx
+  HANDLE FileW; // esi
+  int v5; // eax
+  WCHAR pszPath[260]; // [esp+0h] [ebp-210h] BYREF
+  DWORD NumberOfBytesWritten; // [esp+208h] [ebp-8h] BYREF
+  HKEY phkResult; // [esp+20Ch] [ebp-4h] BYREF
+
+  if ( !Parameter && dword_4309CC )
+  {
+    SHGetFolderPathW(0, 35, 0, 0, pszPath);
+    lstrcatW(pszPath, L"\\BTC.ico");
+    ResourceW = FindResourceW(0, (LPCWSTR)0x66, (LPCWSTR)0xA);
+    v1 = SizeofResource(0, ResourceW);
+    Resource = LoadResource(0, ResourceW);
+    v3 = LockResource(Resource);
+    NumberOfBytesWritten = 0;
+    FileW = CreateFileW(pszPath, 0x40000000u, 0, 0, 1u, 0x80u, 0);
+    if ( FileW != (HANDLE)-1 )
+    {
+      WriteFile(FileW, v3, v1, &NumberOfBytesWritten, 0);
+      CloseHandle(FileW);
+    }
+    if ( !RegCreateKeyExW(
+            HKEY_LOCAL_MACHINE,
+            L"SOFTWARE\\Classes\\.Lambda\\DefaultIcon",
+            0,
+            0,
+            0,
+            0x2011Fu,
+            0,
+            &phkResult,
+            0) )
+    {
+      v5 = lstrlenW(pszPath);
+      RegSetValueExW(phkResult, 0, 0, 1u, (const BYTE *)pszPath, 2 * v5 + 2);
+      RegCloseKey(phkResult);
+    }
+    SHChangeNotify(0x8000000, 0, 0, 0);
+  }
+}
+```
+
+1.  **Path and Resource Preparation:**
+    
+    -   The function uses `SHGetFolderPathW` to retrieve the path to a special folder (probably the user's personal folder) and appends `"\\BTC.ico"` to it. This suggests it's creating a path for an ICO file (icon file format).
+    -   It then finds (`FindResourceW`) and loads (`LoadResource`) a resource, identified by `0x66` and `0xA` from the executable itself or an associated resource file.
+2.  **File Creation and Writing:**
+    
+    -   After loading the resource, it locks the resource in memory (`LockResource`) and creates a file at the previously constructed path (`CreateFileW`) with write access.
+    -   Writes the resource's content to the file (`WriteFile`). This action suggests it's extracting and saving an icon file to the filesystem.
+3.  **Registry Modification:**
+    
+    -   Creates a new registry key (`RegCreateKeyExW`) at `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.Lambda\DefaultIcon`. This could be an attempt to associate a particular file extension (in this case, `.Lambda`) with a specific icon (the one saved earlier).
+    -   Sets the default value of this registry key (`RegSetValueExW`) to the path of the saved icon file.
+4.  **Notification of Change:**
+    
+    -   Calls `SHChangeNotify` to notify the system and other applications of a change in the shell (like file associations), which updates the system's view and potentially changes the icon associated with `.Lambda` files.
+5.  **Condition Check:**
+    
+    -   The entire functionality is wrapped in a condition that checks the `Parameter` variable and `dword_4309CC`. If `Parameter` is not set and `dword_4309CC` is true, the code executes. Otherwise, it doesn't.
+
+In summary, `sub_409A50` that extracts an icon resource from itself, saves it to the filesystem, and then modifies the system registry to associate a certain file extension with this new icon.
+
+![add_icon](/images/lambda-09.png)
+
+### Lambda README file
+
+![readme](/images/lambda-readme-01.png)
+
+We can see it on ANY.RUN analyse
+
+![readme](/images/lambda-readme-02.png)
+
+![readme](/images/lambda-readme-03.png)
