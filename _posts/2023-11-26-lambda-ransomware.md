@@ -513,3 +513,69 @@ We can see it on ANY.RUN analyse
 ![readme](/images/lambda-readme-02.png)
 
 ![readme](/images/lambda-readme-03.png)
+
+### New filename of encrypted file
+
+```
+      while ( 1 )
+      {
+        if ( dword_4308F0 )
+        {
+          v12 = Seed;
+          if ( !Seed && byte_43083F != (_BYTE)Seed )
+          {
+            __asm { rdseed  ecx }
+            if ( (unsigned __int8)byte_43083F >= (unsigned __int8)Seed )
+              v12 = 563;
+            Seed = v12;
+          }
+          qmemcpy(String, L"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 0x7Eu);
+          for ( i = 0; i < 9; ++i )
+          {
+            v15 = lstrlenW((LPCWSTR)String) - 1;
+            String2[i] = String[RtlRandomEx(&Seed) % v15];
+          }
+          v9 = lpString1;
+          String2[9] = 0;
+          lstrcpyW(lpString1, v2);
+          PathRemoveFileSpecW(v9);
+          v11 = (void (__stdcall *)(LPWSTR, LPCWSTR))lstrcatW;
+          lstrcatW(v9, L"\\");
+          lstrcatW(v9, String2);
+          lstrcatW(v9, L".Lambda");
+        }
+        else
+        {
+          lstrcpyW(v9, v2);
+          v17 = (char *)FileHandle + 1;
+          v18 = FileHandle == 0;
+          FileHandle = (char *)FileHandle + 1;
+          if ( v18 )
+            wsprintfW(String2, L".Lambda");
+          else
+            wsprintfW(String2, L"%lu.Lambda", v17);
+          v11(v9, String2);
+        }
+        v19 = MoveFileExW(v2, v9, 8u);
+```
+
+This code appears to be part of an infinite loop (`while (1)`) and performs file name generation and file manipulation operations. Here's a simplified breakdown of its key steps:
+
+1.  **Condition Checking:** The code first checks if a global or static variable (`dword_4308F0`) is set. This variable seems to control the behavior of the following code.
+    
+2.  **Random String Generation:**
+    
+    -   If `dword_4308F0` is true, the code generates a random string. It starts by checking and possibly updating a `Seed` value (used for random generation).
+    -   The code copies a set of characters (lowercase and uppercase alphabets followed by numbers) into a `String` variable.
+    -   A loop (`for`) generates a random 9-character string `String2` using the `RtlRandomEx` function with the random seed.
+3.  **File Path Construction:**
+    
+    -   The code constructs a file path using the generated random string (`String2`), appending the ".Lambda" extension at the end.
+    -   If `dword_4308F0` is false, another method is used for generating a file name based on the value of `FileHandle`.
+4.  **File Manipulation:**
+    
+    -   The code attempts to move or rename a file (`MoveFileExW`) using the paths constructed earlier. The `8u` parameter indicates it should replace the file if it already exists.
+
+In summary, this code seems involved in generating random file names and moving or modifying files on the system.
+
+![information](/images/lambda-10.png)
