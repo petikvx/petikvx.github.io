@@ -1,0 +1,257 @@
+# Lambda Ransomware
+
+Comprehensive analysis of the malware : https://app.any.run/tasks/6f97e090-e8d2-43cf-959c-658a1c166f53
+
+https://www.virustotal.com/gui/file/ea761022497e50f68f276b659e340d95afa27c6b72776aaa497ec3e38118e48a/detection
+
+## First Analyse with ANY.RUN
+
+| Information | Data |
+|--|--|
+| File Type | PE32 executable (GUI) Intel 80386, for MS Windows |
+| MD5|d6d92703ad1bd824cbc022a6402d7337|
+|SHA-1|25a46b05630c4927f8ec0d95c4d7bbb2ca93ccfa|
+|SHA-256|ea761022497e50f68f276b659e340d95afa27c6b72776aaa497ec3e38118e48a|
+|Creation Time|2023-10-13 18:52:05 UTC|
+
+### File information
+![information](/images/lambda-01.png)
+
+### Process graph
+![information](/images/lambda-02.png)
+
+### Process list
+![information](/images/lambda-03.png)
+
+### Malicious activities of Lambda
+![information](/images/lambda-04.png)
+
+### Droping some executable files after start
+![information](/images/lambda-05.png)
+
+### Modification of files by ecnrypted them
+![information](/images/lambda-06.png)
+
+### Some IP connection
+![information](/images/lambda-07.png)
+
+## Debugging part
+
+We will study the malware using specific tools like Detect It Easy IDA Pro.
+
+![information](/images/lambda-08.png)
+
+### FindFirstFile API search
+
+```
+ULONG __stdcall StartAddress(const WCHAR *Parameter)
+{
+  WCHAR *v1; // esi
+  HANDLE CurrentThread; // eax
+  int (__stdcall *v3)(LPCWSTR); // edi
+  SIZE_T v4; // esi
+  int *v5; // esi
+  int *v6; // eax
+  WCHAR *v7; // esi
+  const WCHAR *v8; // esi
+  int v9; // esi
+  SIZE_T v10; // esi
+  WCHAR *i; // edi
+  int **v12; // eax
+  LPWSTR ExtensionW; // eax
+  const WCHAR *v14; // edi
+  const WCHAR *v15; // esi
+  int v16; // esi
+  SIZE_T v17; // edi
+  WCHAR *j; // esi
+  _DWORD *v19; // eax
+  int v20; // ecx
+  HANDLE v22; // [esp-Ch] [ebp-284h]
+  void *v23; // [esp-4h] [ebp-27Ch]
+  const WCHAR *lpString; // [esp+10h] [ebp-268h]
+  int *v25; // [esp+14h] [ebp-264h] BYREF
+  int **v26; // [esp+18h] [ebp-260h]
+  LPVOID lpMem; // [esp+1Ch] [ebp-25Ch]
+  int v28; // [esp+20h] [ebp-258h]
+  HANDLE hFindFile; // [esp+24h] [ebp-254h]
+  struct _WIN32_FIND_DATAW FindFileData; // [esp+28h] [ebp-250h] BYREF
+
+  v1 = (WCHAR *)Parameter;
+  if ( (GetFileAttributesW(Parameter) & 0x10) == 0 )
+    goto LABEL_43;
+  CurrentThread = GetCurrentThread();
+  SetThreadPriority(CurrentThread, 2);
+  v28 = dword_4308D0;
+  v26 = &v25;
+  v25 = (int *)&v25;
+  sub_408990((int)L"Start Enumeration: %s", (int)Parameter);
+  v3 = lstrlenW;
+  while ( 2 )
+  {
+    v4 = 2 * v3(v1) + 16;
+    for ( lpMem = HeapAlloc(hHeap, 8u, v4); !lpMem; lpMem = HeapAlloc(hHeap, 8u, v4) )
+      Sleep(0x64u);
+    v5 = (int *)lpMem;
+    lstrcpyW((LPWSTR)lpMem + 4, Parameter);
+    v6 = v25;
+    *v5 = (int)v25;
+    v5[1] = (int)&v25;
+    v6[1] = (int)v5;
+    v25 = v5;
+    if ( v5 == (int *)&v25 )
+      goto LABEL_40;
+    do
+    {
+      v7 = (WCHAR *)(v5 + 2);
+      lpString = v7;
+      sub_40A5E0(v7);
+      lstrcatW(v7, L"*");
+      hFindFile = FindFirstFileW(v7, &FindFileData);
+      if ( hFindFile == (HANDLE)-1 )
+        goto LABEL_39;
+      *wcsrchr(v7, 0x2Au) = 0;
+      do
+      {
+        if ( !lstrcmpiW(FindFileData.cFileName, L".")
+          || !lstrcmpiW(FindFileData.cFileName, L"..")
+          || (FindFileData.dwFileAttributes & 0x404) != 0 )
+        {
+          goto LABEL_37;
+        }
+        if ( (FindFileData.dwFileAttributes & 0x10) != 0 )
+        {
+          if ( !dword_430938 || (FindFileData.dwFileAttributes & 2) == 0 )
+          {
+            v8 = ::lpMem;
+            if ( *::lpMem )
+            {
+              while ( lstrcmpiW(FindFileData.cFileName, v8) )
+              {
+                v8 += v3(v8) + 1;
+                if ( !*v8 )
+                  goto LABEL_17;
+              }
+            }
+            else
+            {
+LABEL_17:
+              v9 = v3(lpString);
+              v10 = 2 * (v9 + v3(FindFileData.cFileName)) + 18;
+              for ( i = (WCHAR *)HeapAlloc(hHeap, 8u, v10); !i; i = (WCHAR *)HeapAlloc(hHeap, 8u, v10) )
+                Sleep(0x64u);
+              lstrcpyW(i + 4, lpString);
+              lstrcatW(i + 4, FindFileData.cFileName);
+              lstrcatW(i + 4, L"\\");
+              v12 = v26;
+              *(_DWORD *)i = &v25;
+              *((_DWORD *)i + 1) = v12;
+              *v12 = (int *)i;
+              v26 = (int **)i;
+            }
+          }
+        }
+        else
+        {
+          if ( sub_40A560(FindFileData.cFileName) )
+            goto LABEL_37;
+          ExtensionW = PathFindExtensionW(FindFileData.cFileName);
+          if ( !*ExtensionW )
+            goto LABEL_27;
+          v14 = ExtensionW + 1;
+          if ( !lstrcmpiW(ExtensionW + 1, L"Lambda") )
+            goto LABEL_37;
+          v15 = dword_430914;
+          if ( !*dword_430914 )
+          {
+LABEL_26:
+            v7 = (WCHAR *)lpString;
+            v3 = lstrlenW;
+LABEL_27:
+            if ( (FindFileData.nFileSizeLow || FindFileData.nFileSizeHigh)
+              && (!v28 || FindFileData.nFileSizeHigh || FindFileData.nFileSizeLow > 0xA00000) )
+            {
+              v16 = v3(v7);
+              v17 = 2 * (v16 + v3(FindFileData.cFileName)) + 2;
+              for ( j = (WCHAR *)HeapAlloc(hHeap, 8u, v17); !j; j = (WCHAR *)HeapAlloc(hHeap, 8u, v17) )
+                Sleep(0x64u);
+              lstrcpyW(j, lpString);
+              lstrcatW(j, FindFileData.cFileName);
+              sub_40FB80(j);
+              if ( !sub_40A8B0(j, FindFileData.cFileName) )
+                _InterlockedIncrement(&dword_430A1C);
+              HeapFree(hHeap, 0, j);
+            }
+            goto LABEL_37;
+          }
+          while ( lstrcmpiW(v14, v15) )
+          {
+            v15 += lstrlenW(v15) + 1;
+            if ( !*v15 )
+              goto LABEL_26;
+          }
+        }
+LABEL_37:
+        v3 = lstrlenW;
+        v7 = (WCHAR *)lpString;
+      }
+      while ( FindNextFileW(hFindFile, &FindFileData) );
+      FindClose(hFindFile);
+LABEL_39:
+      v23 = lpMem;
+      v22 = hHeap;
+      v19 = (_DWORD *)*((_DWORD *)lpMem + 1);
+      v20 = *(_DWORD *)lpMem;
+      *v19 = *(_DWORD *)lpMem;
+      *(_DWORD *)(v20 + 4) = v19;
+      HeapFree(v22, 0, v23);
+      v5 = v25;
+      lpMem = v25;
+    }
+    while ( v25 != (int *)&v25 );
+LABEL_40:
+    v1 = (WCHAR *)Parameter;
+    if ( v28 )
+    {
+      sub_408990((int)L"Finished Exploring Large Files on: %s", (int)Parameter);
+      v28 = 0;
+      continue;
+    }
+    break;
+  }
+  sub_408990((int)L"Finished Exploring All Files on: %s", (int)Parameter);
+LABEL_43:
+  HeapFree(hHeap, 0, v1);
+  return 0;
+}
+```
+
+1.  **Initialization and Directory Verification (Lines 1-6):**
+    
+    -   `v1 = (WCHAR *)Parameter;`: Stores the `Parameter` in `v1`.
+    -   `if ( (GetFileAttributesW(Parameter) & 0x10) == 0 ) goto LABEL_43;`: Checks if `Parameter` is a directory. If not, the function terminates.
+2.  **Setting Thread Priority (Lines 7-8):**
+    
+    -   `CurrentThread = GetCurrentThread(); SetThreadPriority(CurrentThread, 2);`: Retrieves the current thread and sets its priority to a specified level.
+3.  **Preparation for File Enumeration (Lines 9-14):**
+    
+    -   Variables like `v28`, `v26`, and `v25` are initialized for managing files to be explored.
+    -   A logging function `sub_408990` is called, indicating the start of enumeration.
+4.  **Main Enumeration Loop (Line 15 and onwards):**
+    
+    -   The `while (2)` loop suggests an infinite loop, but it has exit points.
+    -   Memory allocation (`HeapAlloc`) and checking (`Sleep(0x64u)`) are performed to handle insufficient memory situations.
+5.  **Processing Each File (Block inside the loop):**
+    
+    -   `hFindFile = FindFirstFileW(v7, &FindFileData);`: Starts the search for the first file in the directory.
+    -   The condition `if ( hFindFile == (HANDLE)-1 )` checks if the search failed.
+6.  **Processing Found Files (Nested `do {...} while (...)` loop):**
+    
+    -   The loop processes each file found by `FindNextFileW`.
+    -   Filters out special files like `.` and `..`, and hidden or system files/folders.
+    -   Handles subdirectories recursively.
+    -   Processes files based on specific criteria like extension and file size.
+7.  **Cleanup and Resource Release (End of the function):**
+    
+    -   Memory allocated (`HeapFree`) for each enumerated item is released.
+    -   If the variable `v28` is set, a log is written indicating the end of the exploration of large files.
+    -   The function concludes by freeing the memory of `v1` and returning `0`.
