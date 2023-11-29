@@ -93,3 +93,5 @@ The two screenshots depict a file being renamed, while its content remains encry
 
 ![information](/images/phobos/phobos-06.png)
 
+We also have a file named readme.txt with a ransomware note. This file seems to be generated in every folder.
+![information](/images/phobos/phobos-07.png)
