@@ -21,7 +21,7 @@ Firstly, the ransomware.exe process (PID 2980) self-restarts using svchost.exe, 
 
 ![image](/images/phobos/phobos-03.png)
 
-Here's how the VB.NET code appears. It copy the current executable to a specified location and attempt to run it with administrative privileges. 
+It copy the current executable to a specified location and attempt to run it with administrative privileges. 
 
 ```
 Private Shared processName As String = "svchost.exe"
@@ -85,7 +85,7 @@ End Sub
     
     -   Includes handling for `Win32Exception`, particularly for error code 1223, suggesting UAC denial. In this case, the function calls itself recursively.
 
-The software appears to impact a significant number of files by either creating, modifying, or renaming them.
+The malware appears to impact a significant number of files by either creating, modifying, or renaming them.
 
 ![information](/images/phobos/phobos-04.png)
 
