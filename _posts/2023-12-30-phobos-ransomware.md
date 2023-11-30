@@ -799,3 +799,7 @@ End Sub
 This function changes the computer's wallpaper. It takes a base64-encoded image, converts it into a JPEG file, and sets it as the new wallpaper.
 
 ![wallpaper](/images/phobos/phobos-08.png)
+
+### Conclusion
+
+Phobos Ransomware is an advanced malware that encrypts user files, demanding a Bitcoin ransom for recovery. It employs a range of techniques for spreading, encryption, and system manipulation, targeting a wide variety of file types and taking measures to ensure its persistence and evasion.
