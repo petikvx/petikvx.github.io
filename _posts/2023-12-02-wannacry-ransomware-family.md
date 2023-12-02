@@ -174,15 +174,16 @@ In the in-depth analysis of the composition of the WannaCry ransomware, we have 
     
 2.  **File c.wnry (Darkweb Data)**: This file contains a list of onion addresses from the darkweb, along with a link to download the Tor Browser. These elements may be utilized by attackers to establish anonymous connections and operate on the darkweb.
 
-```
+<pre>
 gx7ekbenv2riucmf.onion;57g7spgrzlojinas.onion;xxlvbrloxvriy2c5.onion;76jdd2ir2embyv47.onion;cwwnhwhlz52maqm7.onion;
 https://dist.torproject.org/torbrowser/6.5.1/tor-win32-0.2.9.10.zip
 
-```
+</pre>
     
 3.  **File r.wnry (Ransom Note)**: This is the ransom note left by the assailants on infected systems. The note explains the victim's situation, provides instructions for paying the ransom in Bitcoin, and explains how to obtain the decryption tool. It is intended to compel the victim to cooperate.
 
 <pre>
+
 Q:  What's wrong with my files?
 A:  Ooops, your important files are encrypted. It means you will not be able to access them anymore until they are decrypted.
     If you follow our instructions, we guarantee that you can decrypt all your files quickly and safely!
@@ -203,7 +204,7 @@ A:  Don't worry about decryption.
 
 4.  **File s.wnry (Zipped File)**: This file appears to be an unprotected archive that, when decompressed, reveals a list of files, including libraries and Tor executables, suggesting that WannaCry might use the Tor network for anonymous communications.
 
-```
+<pre>
 petik@labvx:articles$ tree Data/ Tor/
 Data/
 └── Tor
@@ -217,8 +218,7 @@ Tor/
 ├── ssleay32.dll
 ├── tor.exe
 └── zlib1.dll
-
-```
+</pre>
 
 5.  **File t.wnry (Data File)**: This file begins with the string "WANACRY!" and likely contains crucial data for the ransomware's operation.
     
