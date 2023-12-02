@@ -27,7 +27,7 @@ And with the DiE tool :
 
 We can see that the file is a compressed file. However, when using the 7z utility, we encounter a password barrier that prevents us from proceeding further.
 
-```
+<pre>
 petik@labvx:articles$ 7z x ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa 
 
 7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
@@ -83,11 +83,11 @@ Physical Size = 3446325
 
     
 Enter password (will not be echoed):
-```
+</pre>
 
 Next, we will disassemble the program using IDA, and right at the beginning of the code, we come across this.
 
-```
+```assembly
 loc_4020B4:
 lea     eax, [ebp+Filename]
 push    eax             ; lpPathName
@@ -114,7 +114,7 @@ jz      short loc_402165
 
 Therefore, we can finally unzip the file with the correct password.
 
-```
+<pre>
 Everything is Ok
 
 Files: 36
@@ -163,7 +163,7 @@ petik@labvx:articles$ tree
 
 1 directory, 37 files
 
-```
+</pre>
 
 
 In the in-depth analysis of the composition of the WannaCry ransomware, we have uncovered several essential files orchestrating its formidable operation. Here is an overview of these components:
