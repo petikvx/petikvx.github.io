@@ -237,7 +237,13 @@ Tor/
 * **taskse.exe**: This second executable file, taskse.exe, is likely used to execute specific tasks related to the encryption of the victim's files. It could be responsible for generating and managing the encryption keys needed to securely lock the files. Additionally, it may play a role in the ransom demand process by displaying the ransom note and guiding the victim on how to pay the ransom in Bitcoin.
     
 * Both of these files, taskdl.exe and taskse.exe, are crucial to the overall operation of the WannaCry ransomware, although their precise functions may vary depending on different versions of the malware. Generally, they are used for installation, propagation, and file encryption, making them integral parts of the attack process.
-    
+
+10. **All files in msg/ Directory** 
+All translations for the ransomware
+
+![image](/images/wanacry/wannacry-02.jpeg)
+
+![image](/images/wanacry/wannacry-01.jpeg)
 
 Examining these elements of WannaCry provides us with a deeper understanding of the complexity of this formidable malware, its infrastructure, and the mechanisms it employs to cripple targeted systems. Combating such threats requires a thorough understanding of their inner workings to enhance protection and contribute to overall cybersecurity.
 
