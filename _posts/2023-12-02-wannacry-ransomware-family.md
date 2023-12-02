@@ -1,6 +1,6 @@
 # Wannacry Ransomware family discovery
 
-* https://app.any.run/tasks/9907be6c-e841-4c61-843b-1138ab6717b4
+* [https://app.any.run/tasks/9907be6c-e841-4c61-843b-1138ab6717b4](https://app.any.run/tasks/9907be6c-e841-4c61-843b-1138ab6717b4)
 
 ## Introduction
 
