@@ -182,7 +182,7 @@ https://dist.torproject.org/torbrowser/6.5.1/tor-win32-0.2.9.10.zip
     
 3.  **File r.wnry (Ransom Note)**: This is the ransom note left by the assailants on infected systems. The note explains the victim's situation, provides instructions for paying the ransom in Bitcoin, and explains how to obtain the decryption tool. It is intended to compel the victim to cooperate.
 
-```
+<pre>
 Q:  What's wrong with my files?
 A:  Ooops, your important files are encrypted. It means you will not be able to access them anymore until they are decrypted.
     If you follow our instructions, we guarantee that you can decrypt all your files quickly and safely!
@@ -199,7 +199,7 @@ A:  Don't worry about decryption.
     
 *   If you need our assistance, send a message by clicking <Contact Us> on the decryptor window.
 
-```
+</pre>
 
 4.  **File s.wnry (Zipped File)**: This file appears to be an unprotected archive that, when decompressed, reveals a list of files, including libraries and Tor executables, suggesting that WannaCry might use the Tor network for anonymous communications.
 
