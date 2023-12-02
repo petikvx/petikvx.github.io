@@ -114,7 +114,7 @@ jz      short loc_402165
 
 Therefore, we can finally unzip the file with the correct password.
 
-<pre>
+```text
 Everything is Ok
 
 Files: 36
@@ -163,7 +163,8 @@ petik@labvx:articles$ tree
 
 1 directory, 37 files
 
-</pre>
+```
+
 
 
 In the in-depth analysis of the composition of the WannaCry ransomware, we have uncovered several essential files orchestrating its formidable operation. Here is an overview of these components:
@@ -174,11 +175,11 @@ In the in-depth analysis of the composition of the WannaCry ransomware, we have 
     
 2.  **File c.wnry (Darkweb Data)**: This file contains a list of onion addresses from the darkweb, along with a link to download the Tor Browser. These elements may be utilized by attackers to establish anonymous connections and operate on the darkweb.
 
-<pre>
+```text
 gx7ekbenv2riucmf.onion;57g7spgrzlojinas.onion;xxlvbrloxvriy2c5.onion;76jdd2ir2embyv47.onion;cwwnhwhlz52maqm7.onion;
 https://dist.torproject.org/torbrowser/6.5.1/tor-win32-0.2.9.10.zip
 
-</pre>
+```
     
 3.  **File r.wnry (Ransom Note)**: This is the ransom note left by the assailants on infected systems. The note explains the victim's situation, provides instructions for paying the ransom in Bitcoin, and explains how to obtain the decryption tool. It is intended to compel the victim to cooperate.
 
