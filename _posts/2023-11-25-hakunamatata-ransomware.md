@@ -20,7 +20,7 @@
 
 ## Actions
 
-```
+```csharp
 private static void Main(string[] args)
 {
 	if (Program.CHANGE_PROCESS_NAME != "")
@@ -72,7 +72,7 @@ The `ALL_DRIVES` function appears to perform an operation on all available drive
 
 ## RECURSIVE_DIRECTORY_LOOK function
 
-```
+```csharp
 string[] files = Directory.GetFiles(path);
 bool flag = true;
 string[] array = files;
@@ -169,7 +169,7 @@ This function performs a series of operations on files within a specified direct
 -   A message file is created in the directory after processing the first eligible file.
 
 ## EXCEPTIONAL_FILE function
-```
+```csharp
 private static bool EXCEPTIONAL_FILE(string FileName)
 {
 	FileName = FileName.ToLower();
@@ -191,7 +191,7 @@ private static bool EXCEPTIONAL_FILE(string FileName)
 }
 ```
 ## FULL_ENCRYPT function
-```
+```csharp
 private static void FULL_ENCRYPT(string filePath)
 {
 	byte[] array = File.ReadAllBytes(filePath);
@@ -284,7 +284,7 @@ The `FULL_ENCRYPT` function is designed to encrypt the entire contents of a file
 This function fully encrypts a file with AES, secures the AES key and IV with RSA encryption, and then writes both the encrypted file data and the encrypted AES key and IV back to the original file. This method is a form of hybrid encryption, combining the efficiency of AES for large data with the security of RSA for key exchange.
 
 ## TRIPLE_ENCRYPT function
-```
+```csharp
 private static void TRIPLE_ENCRYPT(string filePath, int length, int beginning, long middle, long end)
 {
 	string text = Program.RANDOM_STRING(32);

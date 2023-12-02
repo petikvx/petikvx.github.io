@@ -516,7 +516,7 @@ We can see it on ANY.RUN analyse
 
 ### New filename of encrypted file
 
-```
+```cpp
       while ( 1 )
       {
         if ( dword_4308F0 )
