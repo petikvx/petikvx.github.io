@@ -248,3 +248,5 @@ All translations for the ransomware
 ### Conclusion
 
 In conclusion, the thorough analysis of the WannaCry ransomware family highlights a crucial aspect of cybersecurity: the importance of public awareness and education. This devastating attack underscores the vulnerability of our computer systems and the urgency of adopting robust security practices. It is essential for everyone to understand the critical role of regular updates, data backups, and caution when dealing with unknown emails and links. WannaCry is not just a lesson for security experts, but a reminder for all computer users about the need to remain vigilant and informed in an ever-evolving digital world.
+
+<iframe width="848" height="480" src="https://www.youtube.com/embed/rEFre8G_IQw?si=HO__pDRGKc1AGpO9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
