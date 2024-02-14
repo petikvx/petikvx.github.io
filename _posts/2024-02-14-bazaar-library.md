@@ -3,7 +3,6 @@
 ## Year 2024
 * [Bazaar Block 2024 (January)](/library/bazaar/Bazaar.2024.01.html)
 
-
 ## Year 2023
 * [Bazaar Block 2023 (December)](/library/bazaar/Bazaar.2023.12.html)
 * [Bazaar Block 2023 (November)](/library/bazaar/Bazaar.2023.11.html)
