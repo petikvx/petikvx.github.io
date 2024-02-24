@@ -10,6 +10,6 @@
 * [VS Block 00007](/library/virusshare/Virusshare.00007.html)
 * [VS Block 00008](/library/virusshare/Virusshare.00008.html)
 * [VS Block 00009](/library/virusshare/Virusshare.00009.html)
-* [VS Block 00085](/library/virusshare/Virusshare.00085.html)
-* [VS Block 00086](/library/virusshare/Virusshare.00086.html)
+* [VS Block 00085](/library/virusshare/Virusshare.00485.html)
+* [VS Block 00086](/library/virusshare/Virusshare.00486.html)
 
