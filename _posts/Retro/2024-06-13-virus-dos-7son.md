@@ -3,6 +3,10 @@
 
 We will analyze the source code of the Virus.DOS.7son.332, here is the detail.
 
+* [COM Version](https://www.virustotal.com/gui/file/c62b56f3e39ee54320b054607659244807b2830f5cef0d40eb30da5666aa86d6/community)
+* [EXE Version](https://www.virustotal.com/gui/file/bde7361691ac38329375e9840d3c9e98d5c2a7292d988141017fc7de04a621a7/community)
+
+
 ## Segments and Memory Configuration
 
 ```assembly
