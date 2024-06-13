@@ -1,7 +1,7 @@
 
 # Analysis of Virus.DOS.7son.332
 
-This document provides a detailed analysis of an assembly program written for the x86 processor using MASM (Microsoft Macro Assembler) syntax. The program is a virus that infects .COM files. The analysis is broken down into segments for clarity.
+We will analyze the source code of the Virus.DOS.7son.332, here is the detail.
 
 ## Segments and Memory Configuration
 
