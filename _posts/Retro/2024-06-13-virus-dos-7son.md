@@ -1,5 +1,5 @@
 
-# Analysis of Virus.DOS.7son.332
+# Analysis of Virus.DOS.7son.284
 
 We will analyze the source code of the Virus.DOS.7son.332, here is the detail.
 
