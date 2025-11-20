@@ -1,0 +1,36 @@
+---
+layout: default
+title: Accueil
+---
+
+<section class="hero">
+    <h2>Bienvenue sur mon blog</h2>
+    <p>{{ site.description }}</p>
+</section>
+
+<section class="posts-list">
+    <h2>Articles récents</h2>
+    
+    {% if site.posts.size > 0 %}
+        {% for post in site.posts limit:5 %}
+        <article class="post-preview">
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <div class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %B %Y" }}</time>
+            </div>
+            <div class="post-excerpt">
+                {{ post.excerpt }}
+            </div>
+            <a href="{{ post.url | relative_url }}" class="read-more">Lire la suite &rarr;</a>
+        </article>
+        {% endfor %}
+        
+        {% if site.posts.size > 5 %}
+        <div class="view-all">
+            <a href="{{ '/blog' | relative_url }}" class="button">Voir tous les articles</a>
+        </div>
+        {% endif %}
+    {% else %}
+        <p>Aucun article pour le moment. Revenez bientôt!</p>
+    {% endif %}
+</section>
