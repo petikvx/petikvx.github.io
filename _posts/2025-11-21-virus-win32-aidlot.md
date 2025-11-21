@@ -5,6 +5,8 @@ author: "petikvx"
 tags: [msdos, assembly, virus, retro, malware-analysis]
 ---
 
+Malware Analysis Report: *Virus.Win32.Aidlot*
+
 # 🧬 Malware Analysis Report: *Virus.Win32.Aidlot*
 
 ## Introduction
