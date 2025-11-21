@@ -12,6 +12,16 @@ theme: minima
 plugins:
   - jekyll-feed
 
+# Kramdown settings for syntax highlighting
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: nasm
+    css_class: 'highlight'
+    block:
+      line_numbers: true
+
 # Blog settings
 permalink: /blog/:year/:month/:day/:title/
 paginate: 10
