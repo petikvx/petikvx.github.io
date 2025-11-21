@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Analysis of Virus.Win32.Aidlot (MS-DOS, ASM)"
 author: "petikvx"
 tags: [msdos, assembly, virus, retro, malware-analysis]
